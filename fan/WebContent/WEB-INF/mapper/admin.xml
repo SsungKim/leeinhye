@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+	<update id="uploadImg" parameterType="java.util.HashMap">
+		update mainImg set img1 = #{img1}, img2 = #{img2}, img3 = #{img3}, img4 = #{img4}, img5 = #{img5},
+		img6 = #{img6}, img7 = #{img7}
+	</update>
+	<select id="imgList" resultType="java.util.HashMap">
+		select * from mainImg
+	</select>
+	<select id="login" resultType="java.util.HashMap">
+		select * from member where id = #{id} and pw = #{pw}
+	</select>
+	<select id="about" resultType="java.util.HashMap">
+		select * from about order by auto desc
+	</select>
+	<insert id="aboutUpload" parameterType="java.util.HashMap">
+		insert into about(born, height, weight, agency, education, img1, img2, img3, day)
+		values(#{born}, #{height}, #{weight}, #{agency}, #{education}, #{img1}, #{img2}, #{img3}, now())
+	</insert>
+	<delete id="careerDelete">
+		delete from career where auto = #{num}
+	</delete>
+	<insert id="careerAdd" parameterType="java.util.HashMap">
+		insert into career(type, syear, eyear, content) values(#{type}, #{syear}, #{eyear}, #{content})
+	</insert>
+	<insert id="careerPic" parameterType="java.util.HashMap">
+		insert into careerPic(type, img) values(#{type}, #{img})
+	</insert>
+	<update id="careerPicUpdate" parameterType="java.util.HashMap">
+		update careerImg set img1 = #{img1}, img2 = #{img2}, img3 = #{img3}, img4 = #{img4}, img5 = #{img5}, img6 = #{img6},
+		img7 = #{img7}, img8 = #{img8}, img9 = #{img9}, img10 = #{img10}, img11 = #{img11}, img12 = #{img12}, img13 = #{img13},
+		img14 = #{img14}, img15 = #{img15}, img16 = #{img16}, img17 = #{img17}, img18 = #{img18}, img19 = #{img19}
+		where type = #{type}
+	</update>
+	<select id="galleryList" resultType="java.util.HashMap">
+		select * from galleryImg order by auto desc
+	</select>
+	<insert id="galleryUpload">
+		insert into galleryImg(img) values(#{img})
+	</insert>
+	<select id="galleryNum" resultType="java.lang.Integer">
+		select count(*) from galleryImg
+	</select>
+	<delete id="galleryDelete">
+		delete from galleryImg
+	</delete>
+</mapper>
